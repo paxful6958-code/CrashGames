@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoCash - Loan Applications</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html,
+        body {
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: #f5f5f5;
+            overflow: hidden;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+        
+        header {
+            width: 100%;
+            max-width: 480px;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-btn {
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .logo-eco {
+            color: #0066ff;
+        }
+        
+        .logo-cash {
+            color: #ff0000;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        
+        .form-title {
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            width: 180px;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin: 30px auto;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            width: 33.33%;
+            height: 100%;
+            background: linear-gradient(to right, #4361ee, #7209b7);
+        }
+        
+        .step-text {
+            text-align: center;
+            color: #777;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        
+        .form-select,
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            margin-bottom: 24px;
+            transition: border 0.3s;
+        }
+        
+        .form-select:focus,
+        .form-input:focus,
+        .form-textarea:focus {
+            border-color: #4361ee;
+            outline: none;
+        }
+        
+        .invalid {
+            border-color: #e74c3c !important;
+        }
+        
+        .next-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(to right, #4361ee, #7209b7);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: auto;
+        }
+        
+        footer {
+            padding: 20px;
+            color: #aaa;
+            font-size: 13px;
+            text-align: center;
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <button class="back-btn" onclick="history.back()">←</button>
+        <div class="logo"><span class="logo-eco">Eco</span><span class="logo-cash">Cash</span></div>
+        <div></div>
+    </header>
+    <main class="card">
+        <h1 class="form-title">Loan Application</h1>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        <div class="step-text">Step 1 of 3</div>
+
+        <label class="form-label">Loan Type</label>
+        <select class="form-select" id="loanType">
+            <option>Personal Loan</option>
+            <option>Business Loan</option>
+            <option>Home Loan</option>
+            <option>Car Loan</option>
+            <option>Education Loan</option>
+        </select>
+
+        <label class="form-label">Loan Amount ($)</label>
+        <input type="number" class="form-input" id="loanAmount" placeholder="5000" min="100" max="5000">
+
+        <label class="form-label">Loan Term</label>
+        <select class="form-select" id="loanTerm">
+            <option>6 Months</option>
+            <option>12 Months</option>
+            <option>18 Months</option>
+            <option>24 Months</option>
+            <option>36 Months</option>
+            <option>48 Months</option>
+            <option>60 Months</option>
+        </select>
+
+        <label class="form-label">Purpose of Loan</label>
+        <textarea class="form-textarea" id="loanPurpose" placeholder="What will you use the loan for?"></textarea>
+
+        <button class="next-btn" id="nextBtn">NEXT STEP</button>
+    </main>
+    <footer>© 2025 EcoCash</footer>
+
+    <script>
+        // Pre-fill
+        if (localStorage.getItem('loanAmount')) document.getElementById('loanAmount').value = localStorage.getItem('loanAmount');
+        if (localStorage.getItem('loanTerm')) document.getElementById('loanTerm').value = localStorage.getItem('loanTerm') + ' Months';
+
+        document.getElementById('nextBtn').addEventListener('click', function() {
+            const amount = document.getElementById('loanAmount').value.trim();
+            const purpose = document.getElementById('loanPurpose').value.trim();
+
+            let valid = true;
+            document.querySelectorAll('.form-input, .form-textarea').forEach(el => el.classList.remove('invalid'));
+
+            if (!amount || amount < 100) {
+                document.getElementById('loanAmount').classList.add('invalid');
+                valid = false;
+            }
+            if (!purpose) {
+                document.getElementById('loanPurpose').classList.add('invalid');
+                valid = false;
+            }
+
+            if (!valid) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            localStorage.setItem('loanType', document.getElementById('loanType').value);
+            localStorage.setItem('loanAmount', amount);
+            localStorage.setItem('loanTerm', document.getElementById('loanTerm').value.replace(' Months', ''));
+            localStorage.setItem('loanPurpose', purpose || 'Not specified');
+
+            window.location.href = 'details.html';
+        });
+    </script>
+</body>
+
+</html>

