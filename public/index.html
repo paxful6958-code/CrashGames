@@ -1,530 +1,368 @@
+<!-- Mirrored from betrush.site/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Oct 2026 14:58:33 GMT -->
+<meta name='viewport' content='width=device-width, initial-scale=1' />
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Starlink to Cell - Data Plans</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CrashGame-- Account Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Outfit:wght@600;800;900&amp;display=swap" rel="stylesheet">
     <style>
+         :root {
+            --bg-base: #0b0e14;
+            --bg-surface: #131924;
+            --bg-card: #1a2232;
+            --bg-input: #0e131d;
+            --accent-cyan: #00f2fe;
+            --accent-blue: #4facfe;
+            --accent-green: #10b981;
+            --accent-glow: rgba(0, 242, 254, 0.35);
+            --text-main: #f8fafc;
+            --text-muted: #8492a6;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-active: rgba(0, 242, 254, 0.5);
+        }
+        
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            touch-action: manipulation;
         }
         
+        html,
         body {
-            background: #eef2f7;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
+            touch-action: pan-x pan-y;
+            background-color: var(--bg-base);
+            color: var(--text-main);
             min-height: 100vh;
-            padding: 40px 15px;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 440px;
-            background: #fff;
-            border-radius: 18px;
-            padding: 22px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-        }
-        
-        .title {
-            text-align: center;
-            color: #18386d;
-            font-size: 31px;
-            font-weight: 700;
-            line-height: 1.4;
-            margin-bottom: 20px;
-        }
-        
-        .notice {
-            background: #eef3ff;
-            border-radius: 10px;
-            padding: 16px;
-            text-align: center;
-            color: #444;
-            font-size: 15px;
-            line-height: 1.5;
-            margin-bottom: 28px;
-        }
-        
-        .notice strong {
-            color: #111;
-        }
-        
-        .powered {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #555;
-            font-size: 18px;
-        }
-        
-        .econet {
-            display: inline-block;
-            margin-left: 5px;
-            color: #0036a3;
-            font-weight: 800;
-            font-size: 24px;
-            font-style: italic;
-            letter-spacing: 1px;
-        }
-        
-        .econet small {
-            display: block;
-            color: #ff3b00;
-            font-size: 12px;
-            margin-top: -6px;
-            text-align: center;
-            font-style: normal;
-        }
-        
-        .plans-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
         }
         
-        .plan {
-            background: #343c4a;
-            border-radius: 14px;
+        .main-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .brand-logo-hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
             color: #fff;
-            padding: 22px;
+            margin-bottom: 16px;
+        }
+        
+        .brand-logo-hero img {
+            height: 32px;
+            width: auto;
+            filter: drop-shadow(0 0 8px var(--accent-glow));
+        }
+        
+        .bonus-card {
+            width: 100%;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, rgba(26, 34, 50, 0.95), rgba(19, 25, 36, 0.98));
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            border-radius: 12px;
+            padding: 14px 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
             position: relative;
-            transition: 0.35s;
-            cursor: pointer;
+            overflow: hidden;
         }
         
-        .plan:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+        .bonus-title {
+            font-size: 15px;
+            font-weight: 900;
+            color: var(--accent-cyan);
+            font-family: 'Outfit', sans-serif;
+            margin-bottom: 4px;
         }
         
-        .badge {
-            position: absolute;
-            left: 20px;
-            top: 20px;
-            background: #59647a;
-            color: #fff;
-            padding: 5px 14px;
-            border-radius: 30px;
-            font-size: 13px;
+        .bonus-desc {
+            font-size: 12px;
+            color: #f1f5f9;
             font-weight: 600;
+            line-height: 1.3;
         }
         
-        .plan-content {
-            text-align: center;
-            margin-top: 45px;
+        .form-card {
+            width: 100%;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 20px 18px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
         
-        .plan h2 {
-            font-size: 42px;
+        .form-header {
+            margin-bottom: 14px;
+        }
+        
+        .form-title {
+            font-size: 18px;
             font-weight: 800;
-            margin-bottom: 6px;
+            font-family: 'Outfit', sans-serif;
         }
         
-        .plan .days {
-            font-size: 23px;
-            opacity: 0.95;
-            margin-bottom: 18px;
+        .form-subtitle {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-top: 2px;
         }
         
-        .price {
-            font-size: 56px;
-            font-weight: 800;
-            margin-bottom: 22px;
+        .input-group {
+            margin-bottom: 12px;
+            position: relative;
         }
         
-        .details {
-            display: inline-flex;
+        .input-group label {
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        
+        .input-control {
+            width: 100%;
+            height: 38px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-glass);
+            border-radius: 8px;
+            padding: 0 10px;
+            color: #fff;
+            font-size: 12px;
+            outline: none;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        
+        .input-control:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+        
+        .checkbox-group {
+            display: flex;
             align-items: center;
             gap: 8px;
-            color: #fff;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
+            margin-bottom: 16px;
+            font-size: 11px;
+            color: var(--text-muted);
         }
         
-        .details:hover {
-            letter-spacing: 0.6px;
+        .checkbox-group input {
+            accent-color: var(--accent-cyan);
+            width: 14px;
+            height: 14px;
         }
         
-        .arrow {
-            transition: 0.3s;
-        }
-        
-        .details:hover .arrow {
-            transform: translateX(6px);
-        }
-        /* ===== ECOCASH NOTICE ===== */
-        
-        .ecocash-notice {
-            background: #e8f5e9;
-            border: 1px solid #c8e6c9;
-            border-radius: 12px;
-            padding: 16px 18px;
-            text-align: center;
-            color: #2e7d32;
-            font-size: 14px;
-            line-height: 1.6;
-            font-weight: 500;
-        }
-        
-        .ecocash-notice strong {
-            color: #1b5e20;
-        }
-        
-        @media (max-width: 500px) {
-            .title {
-                font-size: 24px;
-            }
-            .plan h2 {
-                font-size: 34px;
-            }
-            .price {
-                font-size: 46px;
-            }
-        }
-        /* ===== MODAL STYLES ===== */
-        
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .btn-submit {
             width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.55);
+            height: 42px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            border: none;
+            border-radius: 8px;
+            color: #050811;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px var(--accent-glow);
+            transition: transform 0.2s, filter 0.2s;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.1);
+        }
+        
+        .page-footer {
+            width: 100%;
+            text-align: center;
+            padding: 16px;
+            font-size: 11px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-glass);
+            background: var(--bg-base);
+            margin-top: auto;
+        }
+        
+        #toast-container {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            z-index: 100;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.3s;
-            z-index: 9999;
+            flex-direction: column;
+            gap: 8px;
         }
         
-        .modal.active {
-            opacity: 1;
-            visibility: visible;
+        .toast {
+            background: var(--bg-card);
+            border: 1px solid var(--border-active);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            font-size: 12px;
+            animation: fadeIn 0.3s forwards;
         }
         
-        .modal-box {
-            width: 400px;
-            max-width: 95%;
-            background: #111d2b;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            animation: popup 0.25s ease;
-        }
-        
-        @keyframes popup {
+        @keyframes fadeIn {
             from {
-                transform: scale(0.9);
                 opacity: 0;
+                transform: translateY(8px);
             }
             to {
-                transform: scale(1);
                 opacity: 1;
+                transform: translateY(0);
             }
-        }
-        
-        .modal-header {
-            background: #1d4075;
-            padding: 18px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .modal-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 18px;
-            font-weight: 700;
-            color: #fff;
-        }
-        
-        .modal-title span {
-            font-size: 18px;
-        }
-        
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 34px;
-            color: #fff;
-            cursor: pointer;
-        }
-        
-        .modal-body {
-            padding: 22px;
-            color: #fff;
-        }
-        
-        .modal-body p {
-            margin-bottom: 12px;
-            line-height: 1.5;
-        }
-        
-        .intro {
-            font-size: 16px;
-            font-weight: 600;
-        }
-        
-        .modal-body ul {
-            padding-left: 22px;
-            margin: 18px 0;
-        }
-        
-        .modal-body li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-text {
-            opacity: 0.85;
-            margin-top: 18px;
-        }
-        
-        .modal-buttons {
-            display: flex;
-            gap: 12px;
-            padding: 0 20px 20px;
-        }
-        
-        .cancel-btn {
-            flex: 1;
-            height: 44px;
-            border: none;
-            border-radius: 8px;
-            background: #4a5568;
-            color: #fff;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        
-        .start-btn {
-            flex: 1;
-            height: 44px;
-            border: none;
-            border-radius: 8px;
-            background: #fff;
-            color: #111;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-        
-        .cancel-btn:hover {
-            background: #5b677d;
-        }
-        
-        .start-btn:hover {
-            background: #ececec;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1 class="title">Starlink to Cell — Data Plans</h1>
 
-        <div class="notice">
-            <strong>Important:</strong> Fast, reliable satellite data, instantly paid via EcoCash.
+    <div class="main-wrapper">
+        <div class="brand-logo-hero">
+            <img src="../i.ibb.co/5WS8kMsY/4-F05-AFF4-AFC8-4-B60-9-F59-086-D08-FA8723.png" alt="CrashGame"> CrashGame
         </div>
 
-        <div class="powered">
-            Powered by
-            <span class="econet">
-                ECONET
-                <small>Wireless</small>
-            </span>
+        <div class="bonus-card">
+            <div class="bonus-title">🎁 100% FREE AVIATOR SIGNALS 🎁</div>
+            <div class="bonus-desc">
+                🎰 Play Aviator 🚀 Get free accurate signals 🎯
+            </div>
         </div>
 
-        <div class="plans-wrapper">
+        <div class="form-card">
+            <div class="form-header">
+                <h2 class="form-title">👤 LOG IN</h2>
+                <p class="form-subtitle">Enter User ID and password to log in</p>
+            </div>
 
-            <!-- 5GB Free Trial — opens modal -->
-            <div class="plan" data-plan="5gb">
-                <span class="badge">New users only</span>
-                <div class="plan-content">
-                    <h2>5GB Data</h2>
-                    <div class="days">2-Day Plan</div>
-                    <div class="price">Free trial</div>
-                    <a href="#" class="details view-details-link">
-                        View details →
-                    </a>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <label>🫆 User ID</label>
+                    <input type="text" id="accountID" class="input-control" required placeholder="e.g. User_582910">
                 </div>
-            </div>
 
-            <!-- Paid plans — navigate directly to index1.html -->
-            <div class="plan" data-plan="15gb">
-                <span class="badge">Best for light users</span>
-                <div class="plan-content">
-                    <h2>15GB Data</h2>
-                    <div class="days">7-Day Plan</div>
-                    <div class="price">USD 0.99</div>
-                    <a href="#" class="details view-details-link">
-                        View details →
-                    </a>
+                <div class="input-group">
+                    <label>🔐 Password</label>
+                    <input type="password" id="password" class="input-control" required placeholder="Enter your password">
                 </div>
-            </div>
 
-            <div class="plan" data-plan="35gb">
-                <span class="badge">Balanced</span>
-                <div class="plan-content">
-                    <h2>35GB Data</h2>
-                    <div class="days">14-Day Plan</div>
-                    <div class="price">USD 1.99</div>
-                    <a href="#" class="details view-details-link">
-                        View details →
-                    </a>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="remember" checked>
+                    <label for="remember">Remember User ID on this device</label>
                 </div>
-            </div>
 
-            <div class="plan" data-plan="50gb">
-                <span class="badge">Heavy use</span>
-                <div class="plan-content">
-                    <h2>50GB Data</h2>
-                    <div class="days">21-Day Plan</div>
-                    <div class="price">USD 2.99</div>
-                    <a href="#" class="details view-details-link">
-                        View details →
-                    </a>
-                </div>
-            </div>
+                <button type="submit" class="btn-submit">LOG IN</button>
+            </form>
 
-            <div class="plan" data-plan="monthly">
-                <span class="badge">Most Popular</span>
-                <div class="plan-content">
-                    <h2>Monthly Unlimited</h2>
-                    <div class="days">30-Day Plan</div>
-                    <div class="price">USD 3.99</div>
-                    <a href="#" class="details view-details-link">
-                        View details →
-                    </a>
-                </div>
+            <div style="text-align: center; font-size: 12px; margin-top: 14px; color: var(--text-muted);">
+                Don't have an ID? <a href="register/index.html" style="color: var(--accent-cyan); font-weight: 700; text-decoration: none;">Register Now</a>
             </div>
-
-            <div class="plan" data-plan="5g">
-                <span class="badge">5G Coverage</span>
-                <div class="plan-content">
-                    <h2>5G Monthly Unlimited</h2>
-                    <div class="days">30-Day Plan</div>
-                    <div class="price">USD 7.99</div>
-                    <a href="#" class="details view-details-link">
-                        View details →
-                    </a>
-                </div>
-            </div>
-
-            <div class="ecocash-notice">
-                <strong>🔒 Secure Payment:</strong> Selecting a plan will redirect you to a secure EcoCash page. Your Starlink to Cell plan will be activated shortly after payment.
-            </div>
-
         </div>
     </div>
 
-    <!-- DETAILS MODAL (only shown for the 5GB free trial) -->
-    <div id="detailsModal" class="modal">
-        <div class="modal-box">
-            <div class="modal-header">
-                <div class="modal-title">
-                    🎁
-                    <span>5GB Data — 2 Day Plan</span>
-                </div>
-                <button class="close-modal">&times;</button>
-            </div>
+    <footer class="page-footer">
+        &copy; 2026 CrashGame. All rights reserved.
+    </footer>
 
-            <div class="modal-body">
-                <p class="intro">
-                    This free trial lets you experience our service firsthand and confirm its legitimacy before upgrading.
-                </p>
-
-                <p><strong>Price:</strong> Free trial</p>
-                <p><strong>Validity:</strong> 2 days</p>
-
-                <ul>
-                    <li>5GB total Starlink to Cell data bundle</li>
-                    <li>Valid for 2 days from activation</li>
-                    <li>Free trial for new users</li>
-                </ul>
-
-                <p class="footer-text">
-                    Enjoy your free 2-day trial! No payment needed. Click Start Free Trial and confirm your number through Ecocash to get started.
-                </p>
-            </div>
-
-            <div class="modal-buttons">
-                <button class="cancel-btn">Cancel</button>
-                <button class="start-btn">Start Free Trial</button>
-            </div>
-        </div>
-    </div>
+    <div id="toast-container"></div>
 
     <script>
-        const modal = document.getElementById("detailsModal");
-
-        // View details links — conditional navigation
-        document.querySelectorAll(".view-details-link").forEach(function(link) {
-            link.addEventListener("click", function(e) {
-                e.preventDefault();
-                const plan = this.closest('.plan');
-                const planType = plan.getAttribute('data-plan');
-
-                if (planType === '5gb') {
-                    // Free trial — open modal with details
-                    modal.classList.add("active");
-                } else {
-                    // Paid plans — go directly to payment page
-                    window.location.href = 'index1.html';
+        document.addEventListener('touchend', (function() {
+            let lastTouch = 0;
+            return function(e) {
+                const now = Date.now();
+                if (now - lastTouch <= 300) {
+                    e.preventDefault();
                 }
-            });
-        });
+                lastTouch = now;
+            };
+        })(), false);
 
-        // Clicking a plan card — conditional navigation
-        document.querySelectorAll(".plan").forEach(function(card) {
-            card.addEventListener("click", function() {
-                const planType = this.getAttribute('data-plan');
-
-                if (planType === '5gb') {
-                    modal.classList.add("active");
-                } else {
-                    window.location.href = 'index1.html';
-                }
-            });
-        });
-
-        // Close modal via X button
-        document.querySelector(".close-modal").onclick = function() {
-            modal.classList.remove("active");
-        };
-
-        // Close modal via Cancel button
-        document.querySelector(".cancel-btn").onclick = function() {
-            modal.classList.remove("active");
-        };
-
-        // Close modal when clicking outside
-        window.onclick = function(e) {
-            if (e.target === modal) {
-                modal.classList.remove("active");
+        window.addEventListener('DOMContentLoaded', () => {
+            const localData = localStorage.getItem('betrush_user');
+            if (localData) {
+                try {
+                    const parsed = JSON.parse(localData);
+                    if (parsed.accountID) {
+                        document.getElementById('accountID').value = parsed.accountID;
+                    }
+                } catch (err) {}
             }
-        };
+        });
 
-        // Start Free Trial button — navigate to index1.html
-        document.querySelector(".start-btn").onclick = function() {
-            window.location.href = 'index1.html';
-        };
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerText = message;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 2500);
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const accountID = document.getElementById('accountID').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!accountID) {
+                showToast('Please enter your Account User ID');
+                return;
+            }
+
+            if (!password) {
+                showToast('Please enter your password');
+                return;
+            }
+
+            const localData = localStorage.getItem('betrush_user');
+            if (localData) {
+                try {
+                    const parsed = JSON.parse(localData);
+
+                    if (parsed.accountID === accountID && parsed.password === password) {
+                        localStorage.setItem('betrush_session', accountID);
+                        showToast('Login Successful!');
+
+                        setTimeout(() => {
+                            window.location.href = 'dashboard/index.html';
+                        }, 1000);
+                        return;
+                    } else {
+                        showToast('Incorrect User ID or password');
+                        return;
+                    }
+                } catch (err) {}
+            }
+
+            showToast('Account not found. Register first.');
+        }
     </script>
 </body>
+
+<!-- Mirrored from betrush.site/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Oct 2026 14:58:36 GMT -->
 
 </html>

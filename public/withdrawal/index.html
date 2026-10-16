@@ -1,0 +1,1355 @@
+﻿<!-- Mirrored from betrush.site/withdrawal/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Oct 2026 14:58:48 GMT -->
+<meta name='viewport' content='width=device-width, initial-scale=1' />
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CrashGame -- Secure Withdrawal Gateway</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Outfit:wght@400;600;800;900&amp;display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --bg-base: #0b0e14;
+            --bg-surface: #131924;
+            --bg-card: #1a2232;
+            --bg-input: #0e131d;
+            --accent-cyan: #00f2fe;
+            --accent-blue: #4facfe;
+            --accent-green: #10b981;
+            --accent-glow: rgba(0, 242, 254, 0.35);
+            --text-main: #f8fafc;
+            --text-muted: #8492a6;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-active: rgba(0, 242, 254, 0.5);
+            --error-red: #ef4444;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        /* HEADER */
+        
+        header {
+            background: rgba(19, 25, 36, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .back-link {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: transform 0.2s, text-shadow 0.2s;
+        }
+        
+        .back-link:hover {
+            transform: translateX(-3px);
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 20px;
+            font-weight: 900;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .nav-logo img {
+            height: 32px;
+            width: auto;
+            filter: drop-shadow(0 0 8px var(--accent-glow));
+            object-fit: contain;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .history-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            padding: 6px 12px;
+            height: 34px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+        
+        .history-btn:hover {
+            border-color: var(--border-active);
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--accent-cyan);
+            box-shadow: 0 0 10px var(--accent-glow);
+            transform: translateY(-1px);
+        }
+        
+        .history-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        /* MAIN CONTAINER */
+        
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+        }
+        
+        .container {
+            max-width: 520px;
+            width: 100%;
+            padding: 32px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.65), 0 0 30px rgba(0, 242, 254, 0.05);
+        }
+        
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            text-align: center;
+            letter-spacing: -0.3px;
+        }
+        
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .input-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+        
+        .input-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            letter-spacing: 0.8px;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 13px 16px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 14px;
+            font-weight: 600;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+        
+        .field-error-text {
+            display: none;
+            color: var(--error-red);
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 6px;
+            margin-left: 2px;
+        }
+        /* PAYMENT METHODS GRID */
+        
+        .methods-label {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            letter-spacing: 0.8px;
+        }
+        
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .method-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            padding: 12px 8px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            position: relative;
+            transition: transform 0.2s, border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+        }
+        
+        .method-card:hover {
+            border-color: var(--border-active);
+            background: var(--bg-input);
+            transform: translateY(-2px);
+        }
+        
+        .speed-tag {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: var(--accent-green);
+            font-size: 8px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-top: 2px;
+            letter-spacing: 0.3px;
+        }
+        
+        .method-icon {
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .method-icon img {
+            height: 24px;
+            width: auto;
+            max-width: 65px;
+            object-fit: contain;
+        }
+        
+        .method-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .method-name {
+            font-size: 12px;
+            font-weight: 800;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .method-sub {
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-align: center;
+        }
+        /* CONFIDENCE BANNER */
+        
+        .confidence-banner {
+            background: rgba(16, 185, 129, 0.06);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .confidence-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .confidence-icon {
+            width: 28px;
+            height: 28px;
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--accent-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+        
+        .confidence-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .confidence-title {
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--accent-green);
+        }
+        
+        .confidence-desc {
+            font-size: 10px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        
+        .confidence-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-glass);
+            font-size: 10px;
+            font-weight: 700;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+        /* MODALS */
+        
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(7, 10, 15, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 16px;
+        }
+        
+        .modal-content {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 24px;
+            width: 100%;
+            max-width: 440px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 30px var(--accent-glow);
+            animation: popIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.94);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .modal-header-details {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border-glass);
+        }
+        
+        .modal-logo-wrapper {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-cyan);
+            box-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
+            background-color: var(--bg-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .modal-logo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .modal-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.2;
+        }
+        
+        .network-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .network-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+            text-align: center;
+        }
+        
+        .network-btn:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 242, 254, 0.1);
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+        
+        .btn-modal-cancel {
+            width: 100%;
+            padding: 13px;
+            background: var(--bg-input);
+            color: var(--text-muted);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            margin-top: 10px;
+        }
+        
+        .btn-modal-cancel:hover {
+            background: var(--bg-card);
+            color: #fff;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: #050811;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 6px 20px var(--accent-glow);
+            transition: filter 0.2s, transform 0.2s;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        
+        .btn-submit:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+        
+        .method-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            padding: 10px 14px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            transition: border-color 0.2s;
+        }
+        
+        .method-row:hover {
+            border-color: rgba(0, 242, 254, 0.3);
+        }
+        
+        .method-row-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+        }
+        
+        .method-logo-wrapper {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1.5px solid var(--accent-cyan);
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+            background-color: var(--bg-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .method-logo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .withdraw-now-btn {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: #050811;
+            border: none;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 6px;
+            box-shadow: 0 0 8px var(--accent-glow);
+            cursor: pointer;
+            transition: transform 0.2s, filter 0.2s;
+        }
+        
+        .withdraw-now-btn:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+        /* TOAST NOTIFICATIONS */
+        
+        #toast-container {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            pointer-events: none;
+            width: max-content;
+            max-width: 90vw;
+        }
+        
+        .toast {
+            background: var(--bg-surface);
+            border: 1px solid var(--error-red);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            animation: fadeIn 0.25s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 12px;
+            border-top: 1px solid var(--border-glass);
+            background: var(--bg-base);
+            margin-top: auto;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 22px 18px;
+            }
+            .methods-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 6px;
+            }
+            .method-card {
+                padding: 10px 4px;
+            }
+            .method-name {
+                font-size: 10px;
+            }
+            .method-sub {
+                font-size: 8px;
+            }
+            header {
+                padding: 12px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="../dashboard/index-2.html" class="back-link">&larr; Lobby</a>
+        <a href="../dashboard/index-2.html" class="nav-logo">
+            <img src="../../i.ibb.co/5WS8kMsY/4-F05-AFF4-AFC8-4-B60-9-F59-086-D08-FA8723.png" alt="CrashGame" /> CrashGame
+        </a>
+        <div class="header-right">
+            <a href="../transactions/index.html" class="history-btn" title="Transaction History">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="9"/>
+                    <polyline points="12 7 12 12 15 15"/>
+                </svg>
+                <span>History</span>
+            </a>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+        <div class="container">
+            <h2>Request Withdrawal</h2>
+            <p class="subtitle">Transfer available balance to your payout provider.</p>
+
+            <div class="methods-label">Select Payout Method</div>
+            <div class="methods-grid">
+                <div class="method-card" onclick="openDetailsModal('usdt_gram')">
+                    <div class="method-icon">
+                        <img src="../../cdn-icons-png.flaticon.com/128/15301/15301814.png" alt="USDT" />
+                    </div>
+                    <div class="method-name">GRAM</div>
+                    <div class="method-sub">(prev. TON)</div>
+                    <div class="speed-tag">⚡ &lt;10 MINS</div>
+                </div>
+
+                <div class="method-card" onclick="openDetailsModal('ott')">
+                    <div class="method-icon">
+                        <img src="../../i.ibb.co/HLbQY3Zw/9-B9-A192-B-F051-45-BA-B5-B0-2994-EA7-B7-EF2.png" alt="OTT Voucher" />
+                    </div>
+                    <div class="method-name">OTT</div>
+                    <div class="method-sub">Voucher Code</div>
+                    <div class="speed-tag">⚡ INSTANT</div>
+                </div>
+
+                <div class="method-card" onclick="openDetailsModal('bitcoin')">
+                    <div class="method-icon">
+                        <img src="../../cdn-icons-png.flaticon.com/128/15301/15301521.png" alt="Bitcoin" />
+                    </div>
+                    <div class="method-name">Bitcoin</div>
+                    <div class="method-sub">BTC Chain</div>
+                    <div class="speed-tag">⚡ &lt;10 MINS</div>
+                </div>
+
+                <div class="method-card" onclick="openUsdtModal()">
+                    <div class="method-icon">
+                        <img src="../../cdn-icons-png.flaticon.com/128/15301/15301795.png" alt="USDT" />
+                    </div>
+                    <div class="method-name">USDT</div>
+                    <div class="method-sub">TRC.20/BEP.20</div>
+                    <div class="speed-tag">⚡ &lt;10 MINS</div>
+                </div>
+
+                <div class="method-card" onclick="openDetailsModal('voucher')">
+                    <div class="method-icon">
+                        <img src="../../i.ibb.co/Jj8KkFyc/D77-CDD6-C-15-AE-4-D2-E-84-ED-7-A37902-AA05-D.png" alt="1Voucher" />
+                    </div>
+                    <div class="method-name">1Voucher</div>
+                    <div class="method-sub">Voucher Code</div>
+                    <div class="speed-tag">⚡ INSTANT</div>
+                </div>
+
+                <div class="method-card" onclick="openOthersModal()">
+                    <div class="method-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                            <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                            <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+                            <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                        </svg>
+                    </div>
+                    <div class="method-name">Others</div>
+                    <div class="method-sub">See More</div>
+                    <div class="speed-tag">⚡ INSTANT</div>
+                </div>
+            </div>
+
+            <div class="confidence-banner">
+                <div class="confidence-info">
+                    <div class="confidence-icon">✓</div>
+                    <div class="confidence-text">
+                        <span class="confidence-title">Automated Express Payout</span>
+                        <span class="confidence-desc">Est. arrival: Under 10 minutes</span>
+                    </div>
+                </div>
+                <div class="confidence-badge">0% Fees</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- USDT NETWORK SELECTOR MODAL -->
+    <div id="usdtNetworkModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-title" style="text-align: center; margin-bottom: 16px;">Select USDT Network</div>
+            <div class="network-options">
+                <button type="button" class="network-btn" onclick="selectUsdtNetwork('TRC20')">TRC20 (Tron Network)</button>
+                <button type="button" class="network-btn" onclick="selectUsdtNetwork('BEP20')">BEP20 (Binance Smart Chain)</button>
+            </div>
+            <button type="button" class="btn-modal-cancel" onclick="closeModal('usdtNetworkModal')">Cancel</button>
+        </div>
+    </div>
+
+    <!-- OTHERS WITHDRAWAL OPTIONS MODAL -->
+    <div id="othersModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-title" style="text-align: center; margin-bottom: 4px;">More Withdrawal Methods</div>
+            <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 16px; text-align: center;">Select a method to enter your payout details.</p>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9iKNz98p01qVsjgNF7WwPvtfBVRa6-DWDcjWnbrnBlg&amp;s" alt="Opay" /></div>
+                    <span>Opay</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('opay')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQkK0XVNop4QlTKK5Q-97DhC16ch0orPxF25oql_4szw&amp;s=10" alt="Wave" /></div>
+                    <span>Wave</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('wave')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN3ejbu9hJ4Y3WgUmT0tS4JgWT2nV2pl8J27OR4WUoJg&amp;s" alt="Airtm" /></div>
+                    <span>Airtm</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('airtm')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="../../mohammadalinijhoom.com/wp-content/uploads/2024/07/bKash-Logo.png" alt="Bkash" /></div>
+                    <span>Bkash</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('bkash')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoiMTkwuGfNe9iqJc7d0uSwQ-Py8aWZekfO4JM6oQX2g&amp;s" alt="Gcash" /></div>
+                    <span>Gcash</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('gcash')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="../../i.ibb.co/rnRx0Xp/F7232-FEE-8106-4-B47-A90-C-C877232-BD499.png" alt="Mpesa" /></div>
+                    <span>Mpesa</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('mpesa')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyK3ez-cqTbGTCanvE0eVOSkpXvHoLhlEbvvw5qIzOiQ&amp;s=10" alt="Nagad" /></div>
+                    <span>Nagad</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('nagad')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1XLJvC8u6VFH5U_qoFnxYTmR0tXMVzRgHic3HFkjIyg&amp;s" alt="Paytm" /></div>
+                    <span>Paytm</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('paytm')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="../../cdn.iconscout.com/icon/free/png-256/free-skrill-icon-svg-download-png-789423.png" alt="Skrill" /></div>
+                    <span>Skrill</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('skrill')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ86KerXfaeiE80v3LS0nAxpHxV5nKIhZnBxGIhVVE0_Q&amp;s=10" alt="PhonePe" /></div>
+                    <span>PhonePe</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('phonepe')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="https://play-lh.googleusercontent.com/gxLZ7ouLFPXZQWvvUDvGtDyFeGjcGLgoR4xRvWC98QuMkhe-OOKiAT6f1oL3PwjM_jDKghVedUM-skYGWowJCio=w240-h480-rw" alt="JazzCash" /></div>
+                    <span>JazzCash</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('jazzcash')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI6RQ1rolOyKr-mVFK5lc9VeasL5RGilALk2FldOIkZMVItOVGo9GjgMrQ&amp;s=10" alt="Redotpay" /></div>
+                    <span>Redotpay</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('redotpay')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqCn05xFC_INR4orMgOv_n168h1fxJTbP0tVSTUOjRZowlFKrI3dowjI8S&amp;s=10" alt="Telebirr" /></div>
+                    <span>Telebirr</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('telebirr')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg5dSp3uWNYzA2rZ0VOoQCCq-QOcEs6kJOWb0tD3hR2Hd9jm0kJ9OQXSa&amp;s=10" alt="Easypaisa" /></div>
+                    <span>Easypaisa</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('easypaisa')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="../../upload.wikimedia.org/wikipedia/commons/3/3a/Airtel_logo-015c53.png?utm_source=fr.wikipedia.org&amp;utm_campaign=index&amp;utm_content=original" alt="Airtel Money" /></div>
+                    <span>Airtel Money</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('airtel')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="../../i.ibb.co/5hGZ589X/IMG-2420.jpg" alt="Capitec Bank" /></div>
+                    <span>South Africa Bank</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('capitec')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="../../vectorflags.s3.amazonaws.com/flags/tr-square-01.png" alt="Turkey IBAN" /></div>
+                    <span>Turkey IBAN</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('turkey_iban')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="../../vectorseek.com/wp-content/uploads/2023/09/Orange-Money-Icon-Logo-Vector.svg-.png" alt="Orange Money" /></div>
+                    <span>Orange Money</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('orange')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <div class="method-row">
+                <div class="method-row-info">
+                    <div class="method-logo-wrapper"><img src="../../cdn.brandfetch.io/idtdXB-ogi/w/400/h/400/theme/dark/icone59a.jpg?c=1bxid64Mup7aczewSAYMX&amp;t=1667849059567" alt="MTN Mobile Money" /></div>
+                    <span>MTN Mobile Money</span>
+                </div>
+                <button type="button" onclick="openDetailsModal('mtn')" class="withdraw-now-btn">WITHDRAW</button>
+            </div>
+
+            <button type="button" class="btn-modal-cancel" onclick="closeModal('othersModal')">Close</button>
+        </div>
+    </div>
+
+    <!-- DYNAMIC WITHDRAWAL DETAILS MODAL -->
+    <div id="detailsModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header-details">
+                <div class="modal-logo-wrapper">
+                    <img id="modalMethodLogo" src="#" alt="Logo" />
+                </div>
+                <div>
+                    <div id="modalMethodTitle" class="modal-title">Enter Withdrawal Details</div>
+                    <span style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Automated Direct Transfer</span>
+                </div>
+            </div>
+
+            <form id="dynamicWithdrawalForm">
+                <div id="fieldGroup1" class="input-group">
+                    <label id="labelField1" for="inputField1">Full Name</label>
+                    <input type="text" id="inputField1" class="input-field" placeholder="Enter your full name" required>
+                </div>
+
+                <div id="fieldGroup2" class="input-group">
+                    <label id="labelField2" for="inputField2">Account Number</label>
+                    <input type="text" id="inputField2" class="input-field" placeholder="Enter account details" required>
+                </div>
+
+                <div class="input-group">
+                    <label id="labelAmount" for="inputAmount">Withdrawal Amount</label>
+                    <input type="number" id="inputAmount" class="input-field" step="any" placeholder="Enter amount" required>
+                    <div id="amountError" class="field-error-text">Amount must be greater than 0.00</div>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    <span>COMPLETE WITHDRAWAL</span>
+                </button>
+                <button type="button" class="btn-modal-cancel" onclick="closeModal('detailsModal')">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <footer>
+        &copy; 2026 CrashGame Global. All rights reserved.
+    </footer>
+
+    <script>
+        let userRawBalance = 0.00;
+        let activeMethodConfig = null;
+        let userDetectedCurrency = "USD"; // Default fallback
+
+        // METHOD DEFINITIONS & CONFIGURATIONS
+        const methodsConfig = {
+            // Cryptos
+            usdt_gram: {
+                title: "USDT (TON)",
+                logo: "https://cdn-icons-png.flaticon.com/128/15301/15301814.png",
+                type: "crypto",
+                field2Label: "TON Wallet Address",
+                field2Placeholder: "Paste your TON network address"
+            },
+            bitcoin: {
+                title: "Bitcoin (BTC)",
+                logo: "https://cdn-icons-png.flaticon.com/128/15301/15301521.png",
+                type: "crypto",
+                field2Label: "Bitcoin Address",
+                field2Placeholder: "Paste your BTC wallet address"
+            },
+            usdt_trc20: {
+                title: "USDT (TRC20)",
+                logo: "https://cdn-icons-png.flaticon.com/128/15301/15301795.png",
+                type: "crypto",
+                field2Label: "TRC20 Wallet Address",
+                field2Placeholder: "Paste your TRC20 address"
+            },
+            usdt_bep20: {
+                title: "USDT (BEP20)",
+                logo: "https://cdn-icons-png.flaticon.com/128/15301/15301795.png",
+                type: "crypto",
+                field2Label: "BEP20 Wallet Address",
+                field2Placeholder: "Paste your BEP20 address"
+            },
+
+            // Vouchers
+            ott: {
+                title: "OTT Voucher",
+                logo: "https://i.ibb.co/HLbQY3Zw/9-B9-A192-B-F051-45-BA-B5-B0-2994-EA7-B7-EF2.png",
+                type: "voucher",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "Cellphone Number",
+                field2Placeholder: "e.g., Mobile account number"
+            },
+            voucher: {
+                title: "1Voucher",
+                logo: "https://i.ibb.co/Jj8KkFyc/D77-CDD6-C-15-AE-4-D2-E-84-ED-7-A37902-AA05-D.png",
+                type: "voucher",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "Cellphone Number",
+                field2Placeholder: "e.g., Mobile account number"
+            },
+
+            // Bank Accounts
+            capitec: {
+                title: "South Africa Bank",
+                logo: "https://i.ibb.co/5hGZ589X/IMG-2420.jpg",
+                type: "bank",
+                field1Label: "Bank Name",
+                field1Placeholder: "Enter bank name",
+                field2Label: "Account Number",
+                field2Placeholder: "Enter your account number"
+            },
+            opay: {
+                title: "Opay",
+                logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9iKNz98p01qVsjgNF7WwPvtfBVRa6-DWDcjWnbrnBlg&s",
+                type: "bank",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "Account Number",
+                field2Placeholder: "Enter your Opay account number"
+            },
+            bkash: {
+                title: "Bkash",
+                logo: "https://mohammadalinijhoom.com/wp-content/uploads/2024/07/bKash-Logo.png",
+                type: "bank",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "Account Number",
+                field2Placeholder: "Enter your Bkash account number"
+            },
+            nagad: {
+                title: "Nagad",
+                logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyK3ez-cqTbGTCanvE0eVOSkpXvHoLhlEbvvw5qIzOiQ&s=10",
+                type: "bank",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "Account Number",
+                field2Placeholder: "Enter your Nagad account number"
+            },
+            easypaisa: {
+                title: "Easypaisa",
+                logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIg5dSp3uWNYzA2rZ0VOoQCCq-QOcEs6kJOWb0tD3hR2Hd9jm0kJ9OQXSa&s=10",
+                type: "bank",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "Account Number",
+                field2Placeholder: "Enter your Easypaisa account number"
+            },
+            jazzcash: {
+                title: "JazzCash",
+                logo: "https://play-lh.googleusercontent.com/gxLZ7ouLFPXZQWvvUDvGtDyFeGjcGLgoR4xRvWC98QuMkhe-OOKiAT6f1oL3PwjM_jDKghVedUM-skYGWowJCio=w240-h480-rw",
+                type: "bank",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "Account Number",
+                field2Placeholder: "Enter your JazzCash account number"
+            },
+            telebirr: {
+                title: "Telebirr",
+                logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqCn05xFC_INR4orMgOv_n168h1fxJTbP0tVSTUOjRZowlFKrI3dowjI8S&s=10",
+                type: "bank",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "Account Number",
+                field2Placeholder: "Enter your Telebirr account number"
+            },
+            turkey_iban: {
+                title: "Turkey IBAN",
+                logo: "https://vectorflags.s3.amazonaws.com/flags/tr-square-01.png",
+                type: "bank",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "IBAN",
+                field2Placeholder: "Enter your IBAN"
+            },
+
+            // Email-based Services
+            airtm: {
+                title: "Airtm",
+                logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN3ejbu9hJ4Y3WgUmT0tS4JgWT2nV2pl8J27OR4WUoJg&s",
+                type: "email",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "Airtm Email Address",
+                field2Placeholder: "e.g., name@example.com"
+            },
+            skrill: {
+                title: "Skrill",
+                logo: "https://cdn.iconscout.com/icon/free/png-256/free-skrill-icon-svg-download-png-789423.png",
+                type: "email",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "Skrill Email Address",
+                field2Placeholder: "e.g., name@example.com"
+            },
+
+            // Mobile Money Services
+            gcash: {
+                title: "Gcash",
+                logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoiMTkwuGfNe9iqJc7d0uSwQ-Py8aWZekfO4JM6oQX2g&s",
+                type: "mobile",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "Mobile Number",
+                field2Placeholder: "e.g., Mobile account number"
+            },
+            wave: {
+                title: "Wave",
+                logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQkK0XVNop4QlTKK5Q-97DhC16ch0orPxF25oql_4szw&s=10",
+                type: "mobile",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "Mobile Number",
+                field2Placeholder: "e.g., Mobile account number"
+            },
+            mpesa: {
+                title: "Mpesa",
+                logo: "https://i.ibb.co/rnRx0Xp/F7232-FEE-8106-4-B47-A90-C-C877232-BD499.png",
+                type: "mobile",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "Mobile Number",
+                field2Placeholder: "e.g., Mobile account number"
+            },
+            airtel: {
+                title: "Airtel Money",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/3/3a/Airtel_logo-01.png?utm_source=fr.wikipedia.org&utm_campaign=index&utm_content=original",
+                type: "mobile",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "Mobile Number",
+                field2Placeholder: "e.g., Mobile account number"
+            },
+            orange: {
+                title: "Orange Money",
+                logo: "https://vectorseek.com/wp-content/uploads/2023/09/Orange-Money-Icon-Logo-Vector.svg-.png",
+                type: "mobile",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "Mobile Number",
+                field2Placeholder: "e.g., Mobile account number"
+            },
+            mtn: {
+                title: "MTN Mobile Money",
+                logo: "https://cdn.brandfetch.io/idtdXB-ogi/w/400/h/400/theme/dark/icon.jpeg?c=1bxid64Mup7aczewSAYMX&t=1667849059567",
+                type: "mobile",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "Mobile Number",
+                field2Placeholder: "e.g., Mobile account number"
+            },
+
+            // UPI Services
+            phonepe: {
+                title: "PhonePe",
+                logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ86KerXfaeiE80v3LS0nAxpHxV5nKIhZnBxGIhVVE0_Q&s=10",
+                type: "upi",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "UPI ID / VPA",
+                field2Placeholder: "e.g., UPI ID or VPA"
+            },
+            paytm: {
+                title: "Paytm",
+                logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1XLJvC8u6VFH5U_qoFnxYTmR0tXMVzRgHic3HFkjIyg&s",
+                type: "upi",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "UPI ID / VPA",
+                field2Placeholder: "e.g., UPI ID or VPA"
+            },
+
+            // UID Services
+            redotpay: {
+                title: "Redotpay",
+                logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI6RQ1rolOyKr-mVFK5lc9VeasL5RGilALk2FldOIkZMVItOVGo9GjgMrQ&s=10",
+                type: "uid",
+                field1Label: "Full Name",
+                field1Placeholder: "Enter your full name",
+                field2Label: "Redotpay UID",
+                field2Placeholder: "Enter your UID"
+            }
+        };
+
+        // Automatic User Region & Currency Detection
+        async function detectUserCurrency() {
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data && data.currency) {
+                        userDetectedCurrency = data.currency;
+                        return;
+                    }
+                }
+            } catch (e) {
+                console.warn('IP Geo-location detection failed, falling back to browser locale settings.');
+            }
+
+            // Fallback: Infer currency via locale settings
+            try {
+                const userLocale = navigator.language || 'en-US';
+                const formatter = new Intl.NumberFormat(userLocale, {
+                    style: 'currency',
+                    currency: 'USD'
+                });
+                const resolvedCurrency = formatter.resolvedOptions().currency;
+                if (resolvedCurrency) {
+                    userDetectedCurrency = resolvedCurrency;
+                }
+            } catch (e) {
+                userDetectedCurrency = "USD";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            detectUserCurrency();
+
+            const genericData = localStorage.getItem('betrush_user');
+            if (genericData) {
+                const user = JSON.parse(genericData);
+                if (user.balance !== undefined) {
+                    userRawBalance = parseFloat(user.balance);
+                }
+            }
+
+            // Input listener for real-time validation on zero amount
+            document.getElementById('inputAmount').addEventListener('input', function() {
+                const errorElement = document.getElementById('amountError');
+                const val = parseFloat(this.value);
+                if (!isNaN(val) && val <= 0) {
+                    errorElement.style.display = 'block';
+                } else {
+                    errorElement.style.display = 'none';
+                }
+            });
+        });
+
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerText = message;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
+        }
+
+        function openOthersModal() {
+            document.getElementById('othersModal').style.display = 'flex';
+        }
+
+        function openUsdtModal() {
+            document.getElementById('usdtNetworkModal').style.display = 'flex';
+        }
+
+        function selectUsdtNetwork(network) {
+            closeModal('usdtNetworkModal');
+            if (network === 'TRC20') {
+                openDetailsModal('usdt_trc20');
+            } else {
+                openDetailsModal('usdt_bep20');
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function openDetailsModal(methodKey) {
+            const config = methodsConfig[methodKey];
+            if (!config) return;
+
+            activeMethodConfig = config;
+
+            // Close other modals if open
+            closeModal('othersModal');
+            closeModal('usdtNetworkModal');
+
+            // Populate Modal Header
+            document.getElementById('modalMethodLogo').src = config.logo;
+            document.getElementById('modalMethodTitle').innerText = config.title;
+
+            // DOM Elements
+            const fieldGroup1 = document.getElementById('fieldGroup1');
+            const labelField1 = document.getElementById('labelField1');
+            const inputField1 = document.getElementById('inputField1');
+
+            const labelField2 = document.getElementById('labelField2');
+            const inputField2 = document.getElementById('inputField2');
+
+            const labelAmount = document.getElementById('labelAmount');
+            const inputAmount = document.getElementById('inputAmount');
+            const errorElement = document.getElementById('amountError');
+
+            // Form Reset
+            document.getElementById('dynamicWithdrawalForm').reset();
+            errorElement.style.display = 'none';
+
+            // Configure Fields
+            if (config.type === 'crypto') {
+                fieldGroup1.style.display = 'none';
+                inputField1.removeAttribute('required');
+            } else {
+                fieldGroup1.style.display = 'block';
+                inputField1.setAttribute('required', 'true');
+                labelField1.innerText = config.field1Label || 'Full Name';
+                inputField1.placeholder = config.field1Placeholder || 'Enter full name';
+            }
+
+            labelField2.innerText = config.field2Label;
+            inputField2.placeholder = config.field2Placeholder;
+
+            labelAmount.innerText = `Withdrawal Amount`;
+            inputAmount.placeholder = `Enter amount`;
+
+            // Show Details Modal
+            document.getElementById('detailsModal').style.display = 'flex';
+        }
+
+        // FORM SUBMISSION HANDLER
+        document.getElementById('dynamicWithdrawalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (!activeMethodConfig) return;
+
+            const inputAmount = document.getElementById('inputAmount');
+            const errorElement = document.getElementById('amountError');
+            const amt = parseFloat(inputAmount.value);
+
+            if (isNaN(amt) || amt <= 0) {
+                errorElement.style.display = 'block';
+                inputAmount.focus();
+                return;
+            } else {
+                errorElement.style.display = 'none';
+            }
+
+            // Always Trigger Insufficient Funds error toast with auto-detected region currency
+            showToast(`Insufficient funds! You have ${userRawBalance.toFixed(2)} ${userDetectedCurrency}.`);
+        });
+    </script>
+</body>
+
+<!-- Mirrored from betrush.site/withdrawal/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 03 Oct 2026 14:58:49 GMT -->
+
+</html>

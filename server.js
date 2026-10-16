@@ -13,11 +13,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 const payheroRoutes = require("./routes/payhero");
-app.use("/api", payheroRoutes);
+// Mounted under /api/payhero to match the frontend fetch call
+app.use("/api/payhero", payheroRoutes);
 
 // Serve homepage
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+// Serve the M-Pesa deposit page directly at /mpesa
+app.get("/mpesa", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "mpesa.html"));
 });
 
 const PORT = process.env.PORT || 3000;
