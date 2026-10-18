@@ -1760,7 +1760,7 @@
 
        function handleDepositRedirect() {
     const referredBy = localStorage.getItem('referredByCode');
-    let depositUrl = '/public/deposit/index.html';
+    let depositUrl = '/public/deposit';
 
     if (referredBy) {
         depositUrl += `?referred_by=${encodeURIComponent(referredBy)}`;
