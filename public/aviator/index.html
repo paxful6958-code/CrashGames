@@ -1758,14 +1758,16 @@
             }, 2000);
         }
 
-        function handleDepositRedirect() {
-            const referredBy = localStorage.getItem('referredByCode');
-            let depositUrl = 'https://betrush.site/deposit/';
-            if (referredBy) {
-                depositUrl += `?referred_by=${encodeURIComponent(referredBy)}`;
-            }
-            window.location.href = depositUrl;
-        }
+       function handleDepositRedirect() {
+    const referredBy = localStorage.getItem('referredByCode');
+    let depositUrl = '/public/deposit/index.html';
+
+    if (referredBy) {
+        depositUrl += `?referred_by=${encodeURIComponent(referredBy)}`;
+    }
+
+    window.location.href = depositUrl;
+}
 
         const avatarPool = [];
         for (let i = 1; i <= 30; i++) {
